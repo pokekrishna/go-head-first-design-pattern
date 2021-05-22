@@ -60,3 +60,18 @@ func (dq *DefaultQuack) Quack() {}
 type MuteQuack struct{}
 
 func (mq *MuteQuack) Quack() {}
+
+type SwimBehaviour interface {
+	Swim()
+}
+
+type DefaultSwimBehaviour struct {
+	Speed int
+}
+func (dsb *DefaultSwimBehaviour) Swim(){}
+
+type UnderwaterSwimBehaviour struct {
+	Depth int
+	Speed int
+}
+func (uwsb *UnderwaterSwimBehaviour) Swim(){}
