@@ -4,7 +4,7 @@ package main
 import "fmt"
 
 type FlyBehaviour interface {
-	fly()
+	Fly()
 }
 
 type DefaultFly struct {
@@ -12,7 +12,7 @@ type DefaultFly struct {
 	Speed  int
 }
 
-func (df *DefaultFly) fly() {}
+func (df *DefaultFly) Fly() {}
 
 type RocketPoweredFlying struct {
 	Height         int
@@ -45,18 +45,18 @@ func NewRocketPoweredFlying(height int, speed int, rocketcap int, fuel string) (
 	return rpf, nil
 }
 
-func (rpf *RocketPoweredFlying) fly() {}
+func (rpf *RocketPoweredFlying) Fly() {}
 
 type QuackBehaviour interface {
-	quack()
+	Quack()
 }
 
 type DefaultQuack struct {
 	Frequency int
 }
 
-func (dq *DefaultQuack) quack() {}
+func (dq *DefaultQuack) Quack() {}
 
 type MuteQuack struct{}
 
-func (mq *MuteQuack) quack() {}
+func (mq *MuteQuack) Quack() {}

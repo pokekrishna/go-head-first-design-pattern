@@ -25,9 +25,9 @@ type Duck interface {
 // flying could take no inputs, apart from the interface's maxHeight.
 //
 // Also, after reading the solution from the book, the nice thing with the
-// FlyBehaviour and QuackBehaviour is that finally you can have just the fly()
+// FlyBehaviour and QuackBehaviour is that finally you can have just the Fly()
 // method with no params, and offload all the state setting, and prerequisites
-// using constructor NewXXX() and then finally call the fly() with no params.
+// using constructor NewXXX() and then finally call the Fly() with no params.
 
 // All types of Actions which a duck can perform
 // TODO: find a way to group them better without impacting the ease of use.
@@ -62,9 +62,9 @@ func main() {
 	var d1 Duck = &RubberDuck{QuackBehaviour: &MuteQuack{}}
 	d1.Display()
 	d1.Swim(defaultSwim)
-	d1.(*RubberDuck).quack()
+	d1.(*RubberDuck).Quack()
 
-	d2fly, err := NewRocketPoweredFlying(1000, 100, 999, "ethaneol")
+	d2fly, err := NewRocketPoweredFlying(1000, 100, 999, "ethanol")
 	if err != nil {
 		panic(err)
 	}
@@ -74,6 +74,6 @@ func main() {
 	}
 	d2.Display()
 	d2.Swim(defaultSwim)
-	d2.(*RedHeadDuck).quack()
-	d2.(*RedHeadDuck).fly()
+	d2.(*RedHeadDuck).Quack()
+	d2.(*RedHeadDuck).Fly()
 }
