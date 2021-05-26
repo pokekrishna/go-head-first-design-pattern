@@ -9,9 +9,8 @@ type Notifier interface {
 }
 
 type Observer interface {
-	Register()
+	Receive()
 }
-
 
 
 
