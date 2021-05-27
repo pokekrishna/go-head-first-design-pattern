@@ -1,7 +1,13 @@
 package data
 
 import (
+	"github.com/pokekrishna/weatherorama/pkg/observer"
 	"time"
+)
+
+var (
+	// FIXME: do away with global var ASAP
+	measurementChangeObserver *observer.Observer
 )
 
 type TemperatureInC float64
@@ -11,9 +17,11 @@ type PressureInPa float64
 // MeasurementChanged is called whenever the measurement reading from the station
 // changes The custom code starts from here.
 func MeasurementChanged(){
-	// TODO: All the interested displays should be notified here.
-	// notified through the API, not individually because tomorrow
-	// there can be new displays we may not be aware
+	measurementChangeObserver.NotifyAllListeners("measurement changed!")
+}
+
+func SetMeasurementChangeObserver(o *observer.Observer) {
+	measurementChangeObserver = o
 }
 
 func getTemperature() (time.Time, TemperatureInC, error){
