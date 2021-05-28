@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/pokekrishna/weatherorama/internal/app"
 	"github.com/pokekrishna/weatherorama/internal/data"
 	"github.com/pokekrishna/weatherorama/pkg/observer"
@@ -16,8 +15,6 @@ func main() {
 	// TODO: creating individual displays here! Any suggested pattern that can ...
 	// TODO: ... create the displays and also cater to the need of future ...
 	// TODO: ... displays through marketplace?
-	currentConditionsDisplay := app.NewCurrentConditionsDisplay(measurementChangeObserver)
-
-	fmt.Println("currentConditionsDisplay", currentConditionsDisplay)
+	_ = app.NewCurrentConditionsDisplay(measurementChangeObserver)
 	data.MeasurementChanged()
 }

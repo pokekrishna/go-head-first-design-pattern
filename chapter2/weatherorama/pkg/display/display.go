@@ -2,26 +2,44 @@
 package display
 
 import (
-	"fmt"
 	"github.com/pokekrishna/weatherorama/pkg/observer"
 	"time"
 )
 
-// TODO: Is it necessary that all display behaviors will need to be notified...
-// TODO: ...of some event or the other? May wanna change the Name of the type?
-type DisplayBehavior struct {
-	Observer *observer.Observer
-
+// ListenerCallback gives a call to make when Notify has been called.
+// This is an interface and not just a function or a type on function
+// because if the display wants to operate on the object variables, it
+// can do so by accessing the receiver parameter of the dynamic type of
+// the interface.
+type ListenerCallback interface {
+	Callback(time time.Time, data interface{}) error
 }
 
-func (behavior *DisplayBehavior) Notify(time time.Time, data interface{}) error{
-	// TODO: missing implementation
-	fmt.Printf("notify called on %v, at %v, with '%v'\n", behavior, time, data)
+// TODO: Is it necessary that all display behaviors will need to be notified...
+// TODO: ...of some event or the other? May wanna change the Name of the type?
+type behavior struct {
+	Observer *observer.Observer
+	lc ListenerCallback
+}
+
+func (behavior *behavior) Notify(time time.Time, data interface{}) error{
+	if err := behavior.lc.Callback(time, data); err != nil{
+		return err
+	}
 	return nil
 }
 
-func (behavior *DisplayBehavior) AddToListen () {
+func (behavior *behavior) AddToListen () {
 	behavior.Observer.Listeners = append(behavior.Observer.Listeners, behavior)
+}
+
+func NewBehavior(o *observer.Observer, lc ListenerCallback) observer.Listener{
+	b := &behavior{
+		Observer: o,
+		lc: lc,
+	}
+	b.AddToListen()
+	return b
 }
 
 // GenericDisplay exists because we aim to build a marketplace of
