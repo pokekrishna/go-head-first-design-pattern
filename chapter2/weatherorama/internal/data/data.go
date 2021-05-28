@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	// FIXME: do away with global var ASAP
+	// TODO: Do away with global var ASAP
 	measurementChangeObserver *observer.Observer
 )
 

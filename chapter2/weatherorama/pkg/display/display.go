@@ -18,6 +18,10 @@ type genericDisplay struct{
 
 }
 
+// TODO: Design limitation: A display can listen to multiple changes ...
+// TODO: ...via AddToListen()s, but the Notify() is common across all ...
+// TODO: ...observations. What if display wants to act differently ...
+// TODO: ... based on different type of observations?
 func (g *genericDisplay) Notify(time time.Time, data interface{}) error{
 	// TODO: missing implementation
 	fmt.Printf("notify called on %T, at %v, with data: %v\n", *g, time, data)
