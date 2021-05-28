@@ -1,6 +1,7 @@
 package data
 
 import (
+	"fmt"
 	"github.com/pokekrishna/weatherorama/pkg/observer"
 	"time"
 )
@@ -17,19 +18,22 @@ type PressureInPa float64
 // MeasurementChanged is called whenever the measurement reading from the station
 // changes The custom code starts from here.
 func MeasurementChanged(){
-	measurementChangeObserver.NotifyAllListeners("measurement changed!")
+	err := measurementChangeObserver.NotifyAllListeners("measurement changed!")
+	if err != nil {
+		fmt.Println("error occurred in notifying listeners.", err)
+	}
 }
 
 func SetMeasurementChangeObserver(o *observer.Observer) {
 	measurementChangeObserver = o
 }
 
-func getTemperature() (time.Time, TemperatureInC, error){
+func GetTemperature() (time.Time, TemperatureInC, error){
 	return time.Time{}, *(new(TemperatureInC)), nil
 }
-func getHumidity() (time.Time, HumidityInRH, error) {
+func GetHumidity() (time.Time, HumidityInRH, error) {
 	return time.Time{}, *(new(HumidityInRH)), nil
 }
-func getPressure() (time.Time, PressureInPa, error) {
+func GetPressure() (time.Time, PressureInPa, error) {
 	return time.Time{}, *(new(PressureInPa)), nil
 }
