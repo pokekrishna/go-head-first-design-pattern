@@ -6,7 +6,7 @@ import "time"
 
 type Listener interface {
 	Notify(time time.Time, data interface{}) error
-	AddToListen(o *Observer)
+	AddToListen()
 }
 
 type Observer struct {
