@@ -12,8 +12,22 @@ var (
 )
 
 type TemperatureInC float64
+
+func (t TemperatureInC) String() string{
+	return fmt.Sprintf("%v°C", float64(t))
+}
+
 type HumidityInRH float64
+
+func (h HumidityInRH) String() string {
+	return fmt.Sprintf("%vRH", float64(h))
+}
+
 type PressureInPa float64
+
+func (p PressureInPa) String() string {
+	return fmt.Sprintf("%vPa", float64(p))
+}
 
 // MeasurementChanged is called whenever the measurement reading from the station
 // changes The custom code starts from here.

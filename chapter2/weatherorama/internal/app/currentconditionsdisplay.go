@@ -19,25 +19,23 @@ func NewCurrentConditionsDisplay(measurementChangeObserver *observer.Observer) *
 }
 
 
-func (c *currentDisplay) Callback(time time.Time, callData interface{}) error{
-	fmt.Printf("Current Display Notified at %v with data '%v'\n", time, callData)
+func (c *currentDisplay) Callback(timestamp time.Time, callData interface{}) error{
+	fmt.Printf("Current Display Notified at %v with data '%v'\n", timestamp, callData)
 	_, t, err := data.GetTemperature()
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Current temp: %v\n", t)
 
 	_, h, err := data.GetHumidity()
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Current humidity: %v\n", h)
 
 	_, p, err := data.GetPressure()
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Current temp: %v\n", p)
 
+	fmt.Printf("Current measurement: %v, %v, %v\n", t, p, h)
 	return nil
 }
