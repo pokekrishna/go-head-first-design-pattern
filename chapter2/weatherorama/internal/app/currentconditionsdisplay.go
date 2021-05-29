@@ -8,10 +8,10 @@ import (
 	"time"
 )
 
-type currentDisplay struct {}
+type currentConditionsDisplay struct {}
 
 func NewCurrentConditionsDisplay(measurementChangeObserver *observer.Observer) *display.GenericDisplay{
-	mainBehavior := display.NewBehavior(measurementChangeObserver, &currentDisplay{})
+	mainBehavior := display.NewBehavior(measurementChangeObserver, &currentConditionsDisplay{})
 
 	currentConditionsDisplay := &display.GenericDisplay{}
 	currentConditionsDisplay.AddNewBehavior(mainBehavior)
@@ -19,7 +19,7 @@ func NewCurrentConditionsDisplay(measurementChangeObserver *observer.Observer) *
 }
 
 
-func (c *currentDisplay) Callback(time time.Time, callData interface{}) error{
+func (c *currentConditionsDisplay) Callback(time time.Time, callData interface{}) error{
 	fmt.Printf("Current Display Notified at %v with data '%v'\n", time, callData)
 	_, t, err := data.GetTemperature()
 	if err != nil {
