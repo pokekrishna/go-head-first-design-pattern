@@ -10,8 +10,8 @@ import (
 
 type currentConditionsDisplay struct {}
 
-func NewCurrentConditionsDisplay(measurementChangeObserver *observer.Observer) *display.GenericDisplay{
-	mainBehavior := display.NewBehavior(measurementChangeObserver, &currentConditionsDisplay{})
+func NewCurrentConditionsDisplay(measurementChangeSubject *observer.Subject) *display.GenericDisplay{
+	mainBehavior := display.NewBehavior(measurementChangeSubject, &currentConditionsDisplay{})
 
 	currentConditionsDisplay := &display.GenericDisplay{}
 	currentConditionsDisplay.AddNewBehavior(mainBehavior)
