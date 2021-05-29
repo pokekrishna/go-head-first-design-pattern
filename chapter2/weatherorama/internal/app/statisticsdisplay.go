@@ -19,7 +19,7 @@ type statisticsDisplay struct {
 	measurementStore []*measurementFrame
 }
 
-func NewStatisticsDisplay(measurementChangeObserver *observer.Observer) *display.GenericDisplay{
+func NewStatisticsDisplay(measurementChangeObserver *observer.Subject) *display.GenericDisplay{
 	mainBehavior := display.NewBehavior(measurementChangeObserver, &statisticsDisplay{})
 
 	statisticsDisplay := &display.GenericDisplay{}

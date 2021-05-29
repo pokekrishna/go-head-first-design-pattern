@@ -9,7 +9,7 @@ import (
 
 type forecastDisplay struct {}
 
-func NewForecastDisplay(measurementChangeObserver *observer.Observer) *display.GenericDisplay{
+func NewForecastDisplay(measurementChangeObserver *observer.Subject) *display.GenericDisplay{
 	mainBehavior := display.NewBehavior(measurementChangeObserver, &forecastDisplay{})
 
 	forecastDisplay := &display.GenericDisplay{}

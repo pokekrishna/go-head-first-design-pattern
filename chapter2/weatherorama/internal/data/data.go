@@ -8,7 +8,7 @@ import (
 
 var (
 	// TODO: Do away with global var ASAP
-	measurementChangeObserver *observer.Observer
+	measurementChangeSubject *observer.Subject
 )
 
 type TemperatureInC float64
@@ -32,14 +32,14 @@ func (p PressureInPa) String() string {
 // MeasurementChanged is called whenever the measurement reading from the station
 // changes The custom code starts from here.
 func MeasurementChanged(){
-	err := measurementChangeObserver.NotifyAllListeners("measurement changed!")
+	err := measurementChangeSubject.NotifyAllListeners("measurement changed!")
 	if err != nil {
 		fmt.Println("error occurred in notifying listeners.", err)
 	}
 }
 
-func SetMeasurementChangeObserver(o *observer.Observer) {
-	measurementChangeObserver = o
+func SetMeasurementChangeSubject(o *observer.Subject) {
+	measurementChangeSubject = o
 }
 
 func GetTemperature() (time.Time, TemperatureInC, error){

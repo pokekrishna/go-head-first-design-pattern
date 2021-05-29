@@ -10,15 +10,15 @@ import (
 // main is acting like the agent that triggers the measurementChanged()
 // and mimics the weather station
 func main() {
-	measurementChangeObserver := &observer.Observer{}
-	data.SetMeasurementChangeObserver(measurementChangeObserver)
+	measurementChangeSubject := &observer.Subject{}
+	data.SetMeasurementChangeSubject(measurementChangeSubject)
 
 	// TODO: creating individual displays here! Any suggested pattern that can ...
 	// TODO: ... create the displays and also cater to the need of future ...
 	// TODO: ... displays through marketplace?
-	_ = app.NewCurrentConditionsDisplay(measurementChangeObserver)
-	_ = app.NewStatisticsDisplay(measurementChangeObserver)
-	_ = app.NewForecastDisplay(measurementChangeObserver)
+	_ = app.NewCurrentConditionsDisplay(measurementChangeSubject)
+	_ = app.NewStatisticsDisplay(measurementChangeSubject)
+	_ = app.NewForecastDisplay(measurementChangeSubject)
 
 	data.MeasurementChanged()
 	// simulating another call
