@@ -42,18 +42,23 @@ func (md *MallardDuck) setQuackBehavior(qb QuackBehaviour){
 
 
 func main() {
-	mfly, err := NewRocketPoweredFlying(1000, 100, 999, "ethanol")
-	if err != nil {
-		panic(err)
-	}
+
 	var md *MallardDuck = &MallardDuck{Duck{
-		fb:                     mfly,
+		fb:                     &DefaultFly{100, 99},
 		qb:                     &DefaultQuack{},
 		display: func() {
 			fmt.Println("I am a mallard duck")
 		},
 	}}
+	md.display()
 
 	md.performFly()
-	md.display()
+
+	mfly, err := NewRocketPoweredFlying(1000, 100, 999, "ethanol")
+	if err != nil {
+		panic(err)
+	}
+	// Demonstrating runtime behavior change leveraging Polymorphism
+	md.setFlyBehavior(mfly)
+	md.performFly()
 }

@@ -12,7 +12,9 @@ type DefaultFly struct {
 	Speed  int
 }
 
-func (df *DefaultFly) Fly() {}
+func (df *DefaultFly) Fly() {
+	fmt.Printf("flying normally at speed %v and height %v\n", df.Speed, df.Height)
+}
 
 type RocketPoweredFlying struct {
 	Height         int
@@ -45,7 +47,9 @@ func NewRocketPoweredFlying(height int, speed int, rocketcap int, fuel string) (
 	return rpf, nil
 }
 
-func (rpf *RocketPoweredFlying) Fly() {}
+func (rpf *RocketPoweredFlying) Fly() {
+	fmt.Printf("flying like a rocket at speed %v and height %v\n", rpf.Speed, rpf.Height)
+}
 
 type QuackBehaviour interface {
 	Quack()
