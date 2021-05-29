@@ -14,7 +14,7 @@ type Subject struct {
 	Observers []Observer
 }
 
-func (s *Subject) NotifyAllListeners(data interface{}) error {
+func (s *Subject) NotifyAllObservers(data interface{}) error {
 	receiveTimeStamp := time.Now().UTC()
 	for _, listener := range s.Observers {
 		if err := listener.Notify(receiveTimeStamp, data); err != nil{

@@ -32,7 +32,7 @@ func (p PressureInPa) String() string {
 // MeasurementChanged is called whenever the measurement reading from the station
 // changes The custom code starts from here.
 func MeasurementChanged(){
-	err := measurementChangeSubject.NotifyAllListeners("measurement changed!")
+	err := measurementChangeSubject.NotifyAllObservers("measurement changed!")
 	if err != nil {
 		fmt.Println("error occurred in notifying listeners.", err)
 	}
