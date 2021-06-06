@@ -33,71 +33,51 @@ func (d *DarkRoast) Cost() Dollar {
 	return d.basePrice
 }
 
-type Condiment interface {
-	AddToBeverage(Beverage) Beverage
-}
-
-// Mocha is a Condiment but satisfies the Beverage interface too
+// Mocha is a decorator. Satisfies Beverage interface for Mirroring.
 type Mocha struct {
 	basePrice   Dollar
 	description string
+	beverage Beverage
+}
 
-	newDescription string
-	newPrice Dollar
+func (m *Mocha) Description() string {
+	return fmt.Sprintf("%s %s", m.beverage.Description(), m.description)
+}
+
+func (m *Mocha) Cost() Dollar {
+	return m.beverage.Cost() + m.basePrice
 }
 
 // TODO: does not solve for 'with double mocha' as 'One' is hardcoded...
 // TODO: ... in cost and description.
-func (m *Mocha) AddToBeverage(beverage Beverage) Beverage {
-	// change the price
-	// change description
-	m.newDescription = fmt.Sprintf("%s %s", beverage.Description(), m.description)
-	m.newPrice = beverage.Cost() + m.basePrice
-	return m
-}
-
-func (m *Mocha) Description() string {
-	return m.newDescription
-}
-
-func (m *Mocha) Cost() Dollar {
-	return m.newPrice
-}
-
-func NewMocha() Condiment {
+func AddMocha(b Beverage) Beverage {
 	return &Mocha{
 		basePrice:   7.99,
 		description: "Charged with One Mocha.",
+		beverage: b,
 	}
 }
 
-// Whip is a Condiment but satisfies the Beverage interface too
+// Whip is a decorator. Satisfies Beverage interface for Mirroring.
 type Whip struct {
 	basePrice   Dollar
 	description string
-
-	newDescription string
-	newPrice Dollar
+	beverage Beverage
 }
 
 func (w *Whip) Description() string {
-	return w.newDescription
+	return fmt.Sprintf("%s %s", w.beverage.Description(), w.description)
 }
 
 func (w *Whip) Cost() Dollar {
-	return w.newPrice
+	return w.beverage.Cost() + w.basePrice
 }
 
-func (w *Whip) AddToBeverage(beverage Beverage) Beverage {
-	w.newDescription = fmt.Sprintf("%s %s", beverage.Description(), w.description)
-	w.newPrice = beverage.Cost() + w.basePrice
-	return w
-}
-
-func NewWhip() Condiment {
+func AddWhip(b Beverage) Beverage {
 	return &Whip{
 		basePrice:   7.99,
 		description: "Whipped, not whooped.",
+		beverage: b,
 	}
 }
 
@@ -107,12 +87,10 @@ func main() {
 	fmt.Printf("Base Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
 
 	// adding Mocha
-	m := NewMocha()
-	dr = m.AddToBeverage(dr)
+	dr = AddMocha(dr)
 	fmt.Printf("New Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
 
 	// adding whip
-	w := NewWhip()
-	dr = w.AddToBeverage(dr)
+	dr = AddWhip(dr)
 	fmt.Printf("New Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
 }
