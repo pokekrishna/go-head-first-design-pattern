@@ -22,9 +22,9 @@ type statisticsDisplay struct {
 func NewStatisticsDisplay(measurementChangeObserver *observer.Subject) *display.GenericDisplay{
 	mainBehavior := display.NewBehavior(measurementChangeObserver, &statisticsDisplay{})
 
-	statisticsDisplay := &display.GenericDisplay{}
-	statisticsDisplay.AddNewBehavior(mainBehavior)
-	return statisticsDisplay
+	statisticsD := &display.GenericDisplay{}
+	statisticsD.AddNewBehavior(mainBehavior)
+	return statisticsD
 }
 
 func (s *statisticsDisplay) Callback(timestamp time.Time, callData interface{}) error{

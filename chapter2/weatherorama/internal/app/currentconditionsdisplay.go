@@ -13,9 +13,9 @@ type currentConditionsDisplay struct {}
 func NewCurrentConditionsDisplay(measurementChangeSubject *observer.Subject) *display.GenericDisplay{
 	mainBehavior := display.NewBehavior(measurementChangeSubject, &currentConditionsDisplay{})
 
-	currentConditionsDisplay := &display.GenericDisplay{}
-	currentConditionsDisplay.AddNewBehavior(mainBehavior)
-	return currentConditionsDisplay
+	currentConditionsD := &display.GenericDisplay{}
+	currentConditionsD.AddNewBehavior(mainBehavior)
+	return currentConditionsD
 }
 
 func (c *currentConditionsDisplay) Callback(timestamp time.Time, callData interface{}) error{

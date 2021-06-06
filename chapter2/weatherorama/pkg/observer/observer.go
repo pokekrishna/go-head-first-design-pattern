@@ -5,6 +5,8 @@ package observer
 
 import "time"
 
+// TODO: Just like AddToListen Registers the Observer, need ...
+// TODO: a DeRegister method.
 type Observer interface {
 	Notify(time time.Time, data interface{}) error
 	AddToListen()
@@ -15,9 +17,9 @@ type Subject struct {
 }
 
 func (s *Subject) NotifyAllObservers(data interface{}) error {
-	receiveTimeStamp := time.Now().UTC()
-	for _, listener := range s.Observers {
-		if err := listener.Notify(receiveTimeStamp, data); err != nil{
+	notifyTimeStamp := time.Now().UTC()
+	for _, observer := range s.Observers {
+		if err := observer.Notify(notifyTimeStamp, data); err != nil{
 			return err
 		}
 	}

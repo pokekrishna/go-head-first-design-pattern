@@ -12,13 +12,13 @@ type forecastDisplay struct {}
 func NewForecastDisplay(measurementChangeObserver *observer.Subject) *display.GenericDisplay{
 	mainBehavior := display.NewBehavior(measurementChangeObserver, &forecastDisplay{})
 
-	forecastDisplay := &display.GenericDisplay{}
-	forecastDisplay.AddNewBehavior(mainBehavior)
-	return forecastDisplay
+	forecastD := &display.GenericDisplay{}
+	forecastD.AddNewBehavior(mainBehavior)
+	return forecastD
 }
 
-func (f *forecastDisplay) Callback(timestap time.Time, callData interface{}) error{
-	fmt.Printf("Forecast Display Notified at %v with data '%v'\n", timestap, callData)
+func (f *forecastDisplay) Callback(timestamp time.Time, callData interface{}) error{
+	fmt.Printf("Forecast Display Notified at %v with data '%v'\n", timestamp, callData)
 	return nil
 }
 
