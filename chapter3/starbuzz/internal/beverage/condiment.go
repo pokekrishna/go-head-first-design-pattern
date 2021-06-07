@@ -2,7 +2,7 @@ package beverage
 
 import "fmt"
 
-// Mocha is a decorator. Satisfies Beverage interface for Mirroring.
+// Mocha is a decorator. Implements Beverage interface for Mirroring.
 type Mocha struct {
 	baseCost    Dollar
 	description string
@@ -27,7 +27,7 @@ func AddMocha(b Beverage) Beverage {
 	}
 }
 
-// Whip is a decorator. Satisfies Beverage interface for Mirroring.
+// Whip is a decorator. Implements Beverage interface for Mirroring.
 type Whip struct {
 	baseCost    Dollar
 	description string

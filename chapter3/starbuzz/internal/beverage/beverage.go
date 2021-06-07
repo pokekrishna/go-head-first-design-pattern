@@ -7,7 +7,7 @@ type Beverage interface {
 	Cost() Dollar
 }
 
-// DarkRoast is an Beverage
+// DarkRoast implements Beverage
 type DarkRoast struct {
 	baseCost    Dollar
 	description string
