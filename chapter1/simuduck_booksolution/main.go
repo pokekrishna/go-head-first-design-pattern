@@ -7,6 +7,9 @@ import "fmt"
 //
 // Problem: Why does all Duck need to have FlyBehavior? even if it never going to
 // fly. Same with QuackBehavior.
+//
+// Duck interface enforces to have display() in all the implementations of Duck.
+// display is intended to be implemented by the dynamic type.
 type Duck struct {
 	fb FlyBehaviour
 	qb QuackBehaviour
