@@ -1,6 +1,9 @@
 package beverage
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // Mocha is a decorator. Implements Beverage interface for Mirroring.
 type Mocha struct {
@@ -10,19 +13,20 @@ type Mocha struct {
 }
 
 func (m *Mocha) Description() string {
-	return fmt.Sprintf("%s %s", m.beverage.Description(), m.description)
+	if !strings.Contains(m.beverage.Description(), m.description){
+		return fmt.Sprintf("%s %s", m.beverage.Description(), m.description)
+	}
+	return m.beverage.Description()
 }
 
 func (m *Mocha) Cost() Dollar {
 	return m.beverage.Cost() + m.baseCost
 }
 
-// TODO: does not solve for 'with double mocha' as 'One' is hardcoded...
-// TODO: ... in cost and description.
 func AddMocha(b Beverage) Beverage {
 	return &Mocha{
 		baseCost:    7.99,
-		description: "Charged with One Mocha.",
+		description: "Charged with Mocha.",
 		beverage:    b,
 	}
 }
@@ -35,7 +39,10 @@ type Whip struct {
 }
 
 func (w *Whip) Description() string {
-	return fmt.Sprintf("%s %s", w.beverage.Description(), w.description)
+	if !strings.Contains(w.beverage.Description(), w.description) {
+		return fmt.Sprintf("%s %s", w.beverage.Description(), w.description)
+	}
+	return w.beverage.Description()
 }
 
 func (w *Whip) Cost() Dollar {
