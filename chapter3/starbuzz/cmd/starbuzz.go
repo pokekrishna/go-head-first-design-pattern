@@ -2,23 +2,26 @@ package main
 
 import (
 	"fmt"
-	"github.com/pokekrishna/starbuzz/internal/beverage"
+	bvg "github.com/pokekrishna/starbuzz/internal/beverage"
 )
 
 func main() {
-	// trying wrapping / decorating
-	dr := beverage.NewDarkRoast()
+	dr := bvg.NewDarkRoast()
+	dr.SetRoastLevel(bvg.LevelMediumRoast)
+
+	var drb bvg.Beverage
+	drb = dr // Extract out the interface compliant part of 'dr'
 	fmt.Printf("Base Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
 
 	// adding Mocha
-	dr = beverage.AddMocha(dr)
+	drb = bvg.AddMocha(drb)
 	fmt.Printf("New Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
 
 	// adding another Mocha
-	dr = beverage.AddMocha(dr)
+	drb = bvg.AddMocha(drb)
 	fmt.Printf("New Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
 
 	// adding whip
-	dr = beverage.AddWhip(dr)
+	drb = bvg.AddWhip(drb)
 	fmt.Printf("New Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
 }
