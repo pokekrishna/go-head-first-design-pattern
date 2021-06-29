@@ -11,17 +11,17 @@ func main() {
 
 	var drb bvg.Beverage
 	drb = dr // Extract out the interface compliant part of 'dr'
-	fmt.Printf("Base Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
+	fmt.Printf("Base Cost of your order:\n%f : %s\n", drb.Cost(), drb.Description())
 
 	// adding Mocha
 	drb = bvg.AddMocha(drb)
-	fmt.Printf("New Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
+	fmt.Printf("New Cost of your order:\n%f : %s\n", drb.Cost(), drb.Description())
 
 	// adding another Mocha
 	drb = bvg.AddMocha(drb)
-	fmt.Printf("New Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
+	fmt.Printf("New Cost of your order:\n%f : %s\n", drb.Cost(), drb.Description())
 
 	// adding whip
 	drb = bvg.AddWhip(drb)
-	fmt.Printf("New Cost of your order:\n%f : %s\n", dr.Cost(), dr.Description())
+	fmt.Printf("New Cost of your order:\n%f : %s\n", drb.Cost(), drb.Description())
 }

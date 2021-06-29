@@ -23,7 +23,7 @@ func (m *Mocha) Cost() Dollar {
 	return m.beverage.Cost() + m.baseCost
 }
 
-func AddMocha(b Beverage) Beverage {
+func AddMocha(b Beverage) *Mocha {
 	return &Mocha{
 		baseCost:    7.99,
 		description: "Charged with Mocha.",
@@ -49,7 +49,7 @@ func (w *Whip) Cost() Dollar {
 	return w.beverage.Cost() + w.baseCost
 }
 
-func AddWhip(b Beverage) Beverage {
+func AddWhip(b Beverage) *Whip {
 	return &Whip{
 		baseCost:    7.99,
 		description: "Whipped, not whooped.",
